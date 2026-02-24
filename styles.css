@@ -259,6 +259,13 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   background: #EDEFDD;
 }
 
+/* Slightly less top padding on the work/gallery page on mobile */
+@media (max-width: 992px) {
+  .gallery-section {
+    padding-top: 120px !important;  /* override inline padding-top:160px */
+  }
+}
+
 .gallery-item { position: relative; }
 
 .tile {
@@ -317,6 +324,17 @@ body.page-single-screen > footer { flex: 0 0 auto; }
 .gallery-item:hover .tile .tile-title,
 .tile:focus-visible .tile-title { opacity: 1; }
 
+/* Mobile/touch: always show tile title overlay since hover doesn't work */
+@media (hover: none) {
+  .tile .tile-title {
+    opacity: 1;
+  }
+  /* Don't zoom image on touch since it sticks */
+  .gallery-item:hover .tile img {
+    transform: none;
+  }
+}
+
 /* ===== Lightbox / Gallery Viewer ===== */
 .lightbox {
   position: fixed;
@@ -357,6 +375,7 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   background: none;
   cursor: pointer;
   font-weight: 700;
+  color: #111;
   transition: transform .15s ease, background .2s ease;
 }
 .lb-back:hover { transform: translateY(-1px); background: #f8f8f8; }
@@ -636,6 +655,49 @@ body.page-single-screen > footer { flex: 0 0 auto; }
     height: auto;
     min-height: 0;
   }
+
+  /* 1) Shrink image-navigation arrows to half size on mobile */
+  .lb-img-arrow-icon {
+    width: 40px;
+  }
+  .lb-img-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* 2) Remove sticky hover/active background on prev/next nav buttons */
+  .lb-arrow:hover,
+  .lb-arrow:active,
+  .lb-arrow:focus {
+    background: none;
+    transform: none;
+  }
+  .lb-back:hover,
+  .lb-back:active,
+  .lb-back:focus {
+    background: none;
+    transform: none;
+  }
+
+  /* 3) Fix "Back to Gallery" button appearing blue on mobile */
+  .lb-back {
+    color: #111;
+  }
+  .lb-back-text {
+    color: #111;
+  }
+}
+
+/* Touch devices: prevent sticky hover background on buttons */
+@media (hover: none) {
+  .lb-arrow:hover {
+    background: none;
+    transform: none;
+  }
+  .lb-back:hover {
+    background: none;
+    transform: none;
+  }
 }
 
 
@@ -894,6 +956,11 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   .about-copy { text-align: center; }
   .about-text p { margin-left: auto; margin-right: auto; }
   .about-photo-wrap { width: clamp(280px, 60vw, 520px); }
+
+  /* More top padding on mobile to clear fixed navbar */
+  #about {
+    padding-top: 110px;
+  }
 }
 
 .about-text .cta-image-btn {
@@ -997,7 +1064,7 @@ body.page-single-screen > footer { flex: 0 0 auto; }
 
 /* tighten on small screens like the mockup */
 @media (max-width: 520px) {
-  .contact { padding: 90px 16px 30px; }
+  .contact { padding: 110px 16px 30px; }
   .contact-text { max-width: 48ch; }
 }
 
