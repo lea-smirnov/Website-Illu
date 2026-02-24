@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lea Viktoria Smirnov - Passionate Kritzlerin</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Bootstrap 5.3.3 CSS (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      id="mainNavbar"
+      class="navbar navbar-expand-md fixed-top navbar-hero shadow-none transition-all"
+    >
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <span class="logo d-inline-block" aria-label="Logo"></span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-md-auto align-items-md-center">
+            <li class="nav-item position-relative">
+              <a
+                class="nav-link d-flex align-items-center gap-2 fw-medium"
+                href="work.html"
+              >
+                <img src="assets/stift.png" alt="Work" class="nav-icon" />
+                WORK
+                <div class="squiggly-line wavy-divider squiggly-active "></div>
+              </a>
+            </li>
+            <li class="nav-item position-relative">
+              <a
+                class="nav-link d-flex align-items-center gap-2 fw-medium"
+                href="about.html"
+              >
+                <img src="assets/gesicht.png" alt="About" class="nav-icon" />
+                ABOUT
+                <div class="squiggly-line wavy-divider"></div>
+              </a>
+            </li>
+            <li class="nav-item position-relative">
+              <a
+                class="nav-link d-flex align-items-center gap-2 fw-medium"
+                href="contact.html"
+              >
+                <img src="assets/brief.png" alt="Contact" class="nav-icon" />
+                CONTACT
+                <div class="squiggly-line wavy-divider"></div>
+              </a>
+            </li>
+            <li class="nav-item ms-md-3">
+              <a class="nav-link p-0" href="https://www.instagram.com/levi_smv/">
+                <img
+                  src="assets/insta-logo.png"
+                  alt="InstagramLogo"
+                  class="nav-icon"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="work" style="padding-top: 160px; min-height: 100vh">
+      <div class="container text-center position-relative">
+        <div
+          id="gallery-grid"
+          class="row"
+          data-masonry='{"percentPosition": true }'
+        >
+          <!-- Tiles are dynamically loaded from Google Sheets via gallery.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY LIGHTBOX ===== -->
+    <div id="galleryLightbox" class="lightbox" aria-hidden="true">
+        <div class="container">
+            <div class="lb-header">
+            <button class="lb-back" aria-label="Back to gallery">
+                <img src="assets/pfeil_zurueck.png" alt="" class="lb-back-icon"> <span class="lb-back-text">Back to Gallery</span>
+            </button>
+            </div>
+
+        <div class="lb-body">
+            <div class="lb-grid">
+            <!-- Left: main image with arrows overlaid -->
+            <div class="lb-main" id="lbMainArea">
+                <img id="lbMainImage" alt="">
+                <div class="lb-img-overlay" id="lbImgNav">
+                  <button class="lb-img-arrow" id="lbImgPrev" aria-label="Previous image"><img src="assets/pfeil_li.png" alt="" class="lb-img-arrow-icon"></button>
+                  <button class="lb-img-arrow" id="lbImgNext" aria-label="Next image"><img src="assets/pfeil_re.png" alt="" class="lb-img-arrow-icon"></button>
+                </div>
+            </div>
+
+            <!-- Right: title, text, scrollable thumbnails -->
+            <aside class="lb-side">
+                <h2 class="lb-title" id="lbTitle">Title</h2>
+                <h4 class="lb-subtitle" id="lbSubtitle"></h4>
+                <p class="lb-desc" id="lbDesc"></p>
+                <div class="lb-thumbs" id="lbThumbs" role="listbox" aria-label="Image thumbnails"></div>
+            </aside>
+            </div>
+        </div>
+
+        <!-- Bottom bar: prev/next with names -->
+        <div class="lb-footer">
+            <div class="lb-nav lb-arrow" id="lbPrev">
+              <button class="lb-arrow" aria-label="Previous item"><img src="assets/pfeil_li.png" alt="" class="lb-nav-icon"></button>
+              <span class="name" id="lbPrevName"></span>
+            </div>
+
+            <div class="lb-nav lb-arrow" id="lbNext">
+            <span class="name" id="lbNextName"></span>
+            <button class="lb-arrow" aria-label="Next item"><img src="assets/pfeil_re.png" alt="" class="lb-nav-icon"></button>
+            </div>
+        </div>
+        </div>
+
+        </div>
+    </div>
+    <!-- ===== /GALLERY LIGHTBOX ===== -->
+
+    <!-- Fullscreen image overlay (outside lightbox for independent z-index stacking) -->
+    <div class="lb-fullscreen-overlay" id="lbFullscreenOverlay">
+      <button class="lb-fullscreen-arrow prev" id="lbFsPrev" aria-label="Previous image"><img src="assets/pfeil_li.png" alt="" class="lb-fs-arrow-icon"></button>
+      <img id="lbFullscreenImg" alt="">
+      <button class="lb-fullscreen-arrow next" id="lbFsNext" aria-label="Next image"><img src="assets/pfeil_re.png" alt="" class="lb-fs-arrow-icon"></button>
+      <button class="lb-fullscreen-close" aria-label="Close fullscreen">✕</button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+      <div class="container">
+        <img class="footer-img-left" src="assets/me-li.png" alt="">
+        <div class="footer-content mx-auto text-center">
+         
+          <div class="footer-credit">Thanks for stopping by! BUSSI ♥</div>
+            © Lea Smirnov 2025 | <a href="impressum.html">Impressum</a>
+        </div>
+        <img class="footer-img-right" src="assets/me-re.png" alt="">
+      </div>
+    </footer>
+
+    <!-- Dependencies -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/imagesloaded@5/imagesloaded.pkgd.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Gallery engine -->
+    <script src="gallery.js"></script>
+
+    <!-- JS -->
+    <script>
+      function initSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (!href || href === "#") {
+              e.preventDefault();
+              return;
+            }
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+      }
+
+      function handleNavbarScroll() {
+        const navbar = document.getElementById("mainNavbar");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled", "shadow-sm");
+          } else {
+            navbar.classList.remove("scrolled", "shadow-sm");
+          }
+        });
+      }
+
+      function addLoadingAnimation() {
+        // Body is hidden via CSS (opacity:0). Reveal once fonts are ready.
+        document.fonts.ready.then(() => {
+          requestAnimationFrame(() => document.body.classList.add("ready"));
+        });
+      }
+
+    function initWitchFlyIn() {
+        document.querySelectorAll(".floating-witches").forEach((el) => {
+            // ensure we trigger after initial layout/opacity transitions
+            requestAnimationFrame(() => el.classList.add("in"));
+        });
+    }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        addLoadingAnimation();
+        initSmoothScrolling();
+        handleNavbarScroll();
+        setTimeout(initWitchFlyIn, 200);
+
+        // Load gallery from Google Sheets
+        Gallery.init({
+          sheetId: '1JHOWnRZhLHeArlwK8rtSmrmzdYsnnuulh8tUaYkqXZ0',
+          gridSelector: '#gallery-grid',
+          startpageOnly: false,
+          imageBasePath: 'assets/projects/',
+          hasLightbox: true
+        });
+      });
+    </script>
+
+
+
+    <!-- Bootstrap 5.3.3 Bundle JS (with Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
