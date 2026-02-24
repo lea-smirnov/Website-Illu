@@ -52,9 +52,18 @@ body.page-single-screen > footer { flex: 0 0 auto; }
 /* Transparent navbar: starts clear, solidifies on scroll */
 .navbar.navbar-hero {
   --dropdown-bg: rgba(237, 239, 221, 0.95); /* default: page green, override per-page via style attr */
+  background: #EDEFDD !important;
+  backdrop-filter: blur(10px);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+/* Only transparent on pages with a hero section */
+body:has(.hero) .navbar.navbar-hero {
   background: transparent !important;
   backdrop-filter: none;
-  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+body:has(.hero) .navbar.navbar-hero.scrolled {
+  background: #EDEFDD !important;
+  backdrop-filter: blur(10px);
 }
 .navbar.navbar-hero.scrolled {
   background: #EDEFDD !important;
@@ -324,9 +333,10 @@ body.page-single-screen > footer { flex: 0 0 auto; }
 .gallery-item:hover .tile .tile-title,
 .tile:focus-visible .tile-title { opacity: 1; }
 
-/* Mobile/touch: always show tile title overlay since hover doesn't work */
+/* Mobile/touch: show tile title overlay on tap instead of hover */
 @media (hover: none) {
-  .tile .tile-title {
+  .tile:active .tile-title,
+  .gallery-item:active .tile .tile-title {
     opacity: 1;
   }
   /* Don't zoom image on touch since it sticks */
@@ -869,13 +879,21 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   margin: 0 8px;
 }
 
-/* Stack on small screens */
+/* Keep footer compact on small screens — single row, smaller images */
 @media (max-width: 520px) {
   .footer .container {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+    padding: 10px 12px;
   }
+  .footer-img-left,
+  .footer-img-right {
+    width: clamp(40px, 14vw, 72px);
+    max-width: clamp(40px, 14vw, 72px);
+  }
+  .footer-text { font-size: 15px; margin-bottom: 4px; }
+  .footer-credit { font-size: 12px; }
 }
 
 /* About Page */
@@ -960,6 +978,7 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   /* More top padding on mobile to clear fixed navbar */
   #about {
     padding-top: 110px;
+    min-height: 100vh;
   }
 }
 
@@ -1002,6 +1021,12 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   background: #ECEFDE;
   padding: clamp(80px, 10vw, 120px) 20px 20px;
   box-sizing: border-box;
+}
+@media (max-width: 992px) {
+  .contact {
+    padding-top: 110px;
+    min-height: 100vh;
+  }
 }
 
 .contact-wrap {
@@ -1064,7 +1089,7 @@ body.page-single-screen > footer { flex: 0 0 auto; }
 
 /* tighten on small screens like the mockup */
 @media (max-width: 520px) {
-  .contact { padding: 110px 16px 30px; }
+  .contact { padding: 110px 16px 30px; min-height: 100vh; }
   .contact-text { max-width: 48ch; }
 }
 
@@ -1156,10 +1181,10 @@ body.page-single-screen > footer { flex: 0 0 auto; }
 @media (max-width: 420px) {
   .footer-img-left,
   .footer-img-right {
-    max-width: clamp(44px, 16vw, 88px);
+    max-width: clamp(36px, 14vw, 72px);
   }
-  .footer-text { font-size: 16px; }
-  .footer-credit { font-size: 13px; }
+  .footer-text { font-size: 14px; }
+  .footer-credit { font-size: 12px; }
 }
 
 
@@ -1189,7 +1214,7 @@ footer.footer#contact .footer-content {
 @media (max-width: 420px) {
   footer.footer#contact .footer-img-left,
   footer.footer#contact .footer-img-right {
-    max-width: clamp(44px, 16vw, 88px) !important;
+    max-width: clamp(36px, 14vw, 72px) !important;
   }
 }
 
