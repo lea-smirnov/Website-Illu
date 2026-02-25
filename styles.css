@@ -295,15 +295,11 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
   z-index: 2;
 }
 
-.scroll-down-arrow:hover .scroll-arrow-img {
-  opacity: 0.7;
-}
 
 .scroll-arrow-img {
   height: clamp(100px, 18vh, 200px);
   width: auto;
   display: block;
-  opacity: 0.55;
   transition: opacity 0.3s ease;
   animation: bounceArrow 2.5s ease-in-out infinite;
 }
@@ -1503,7 +1499,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
     /* exit absolute positioning */
     display: inline-block;
     opacity: 1;
-    margin: -40px 34px 0;
+    margin: -52px 35px 0;
     transform: none !important;
   }
 
