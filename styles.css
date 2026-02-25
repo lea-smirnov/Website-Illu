@@ -31,14 +31,15 @@ body.page-single-screen > section {
 }
 body.page-single-screen > footer { flex: 0 0 auto; }
 
-/* On mobile, let single-screen pages scroll normally */
+/* On mobile, let single-screen pages fill viewport with footer at bottom */
 @media (max-width: 992px) {
   body.page-single-screen {
+    min-height: 100dvh;
     height: auto;
     overflow: auto;
   }
   body.page-single-screen > section {
-    flex: none;
+    flex: 1 1 auto;
     overflow: visible;
   }
 }
@@ -540,8 +541,8 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 .lb-img-overlay {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -567,7 +568,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 }
 .lb-img-arrow-icon {
   display: block;
-  width: 80px;
+  width: 65px;
   height: auto;
   filter: drop-shadow(0 0 3px rgba(255,255,255,0.7));
   opacity: 0.5;
@@ -978,7 +979,6 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
   /* More top padding on mobile to clear fixed navbar */
   #about {
     padding-top: 110px;
-    min-height: 100vh;
   }
 }
 
@@ -995,6 +995,11 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
   transition: transform .25s ease, filter .25s ease;
   filter: drop-shadow(0 2px 0 rgba(0,0,0,.12));
   will-change: transform;
+}
+@media (max-width: 576px) {
+  .cta-image {
+    width: clamp(240px, 65vw, 340px);
+  }
 }
 
 /* Hover + keyboard focus enlargement */
@@ -1025,7 +1030,6 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 @media (max-width: 992px) {
   .contact {
     padding-top: 110px;
-    min-height: 100vh;
   }
 }
 
@@ -1089,7 +1093,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 
 /* tighten on small screens like the mockup */
 @media (max-width: 520px) {
-  .contact { padding: 110px 16px 30px; min-height: 100vh; }
+  .contact { padding: 110px 16px 30px; }
   .contact-text { max-width: 48ch; }
 }
 
@@ -1121,7 +1125,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
     position: static !important;   /* exit absolute positioning */
     display: inline-block;
     opacity: 1;
-    margin: -4px 32px 0;
+    margin: -12px 24px 0;
     transform: none !important;
   }
   .witch-left, .witch-right {
