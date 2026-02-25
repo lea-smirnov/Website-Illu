@@ -41,6 +41,8 @@ body.page-single-screen > footer { flex: 0 0 auto; }
   body.page-single-screen > section {
     flex: 1 1 auto;
     overflow: visible;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 }
 
@@ -978,7 +980,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 
   /* More top padding on mobile to clear fixed navbar */
   #about {
-    padding-top: 110px;
+    padding-top: 120px;
   }
 }
 
@@ -986,6 +988,11 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
   display: inline-block;
   margin-top: 10px;
   text-decoration: none;
+}
+@media (max-width: 992px) {
+  .about-text {
+    text-align: center;
+  }
 }
 
 .cta-image {
@@ -1029,7 +1036,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 }
 @media (max-width: 992px) {
   .contact {
-    padding-top: 110px;
+    padding-top: 120px;
   }
 }
 
@@ -1093,7 +1100,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
 
 /* tighten on small screens like the mockup */
 @media (max-width: 520px) {
-  .contact { padding: 110px 16px 30px; }
+  .contact { padding: 120px 16px 30px; }
   .contact-text { max-width: 48ch; }
 }
 
@@ -1125,7 +1132,7 @@ body:has(.hero) .navbar.navbar-hero.scrolled {
     position: static !important;   /* exit absolute positioning */
     display: inline-block;
     opacity: 1;
-    margin: -12px 24px 0;
+    margin: -40px 34px 0;
     transform: none !important;
   }
   .witch-left, .witch-right {
