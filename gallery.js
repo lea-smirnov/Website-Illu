@@ -348,6 +348,32 @@ const Gallery = (() => {
       if (e.target === fullscreenOverlay || e.target === fullscreenImg) closeFullscreen();
     });
 
+    // Swipe support for fullscreen overlay (mobile)
+    (function initFullscreenSwipe() {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const SWIPE_THRESHOLD = 50;
+
+      fullscreenOverlay.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+      }, { passive: true });
+
+      fullscreenOverlay.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        // Only count horizontal swipes (ignore vertical scrolls)
+        if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+          e.preventDefault();
+          if (dx < 0) {
+            fsGoToNextImage();   // swipe left → next
+          } else {
+            fsGoToPrevImage();   // swipe right → prev
+          }
+        }
+      });
+    })();
+
     tiles.forEach((fig, i) => {
       fig.style.cursor = 'pointer';
       fig.addEventListener('click', () => openLightbox(i));
