@@ -30,8 +30,9 @@ body.ready {
 body.page-single-screen {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
-  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;     /* progressive: dvh where supported, vh as fallback */
+  overflow-x: hidden;
 }
 
 body.page-single-screen>section {
@@ -39,24 +40,16 @@ body.page-single-screen>section {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 body.page-single-screen>footer {
   flex: 0 0 auto;
 }
 
-/* On mobile, let single-screen pages fill viewport with footer at bottom */
+/* On mobile, let single-screen pages stack from top instead of centering */
 @media (max-width: 992px) {
-  body.page-single-screen {
-    min-height: 100dvh;
-    height: auto;
-    overflow: auto;
-  }
-
   body.page-single-screen>section {
-    flex: 1 1 auto;
-    overflow: visible;
     align-items: flex-start;
     justify-content: flex-start;
   }
